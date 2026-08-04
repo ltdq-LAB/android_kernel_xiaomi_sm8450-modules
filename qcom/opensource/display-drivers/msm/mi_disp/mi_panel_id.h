@@ -38,6 +38,9 @@
 #define M80_42_02_0A_PANEL_ID  0x004D383000420200
 #define N16_36_0D_0A_PANEL_ID  0x004E313600360d00
 #define N16_42_02_OB_PANEL_ID  0x004e313600420201
+#define N16_41_02_OC_PANEL_ID  0x004E313600410203
+#define M81_36_02_0A_PANEL_ID  0x004D383150360200
+#define M81_42_02_0B_PANEL_ID  0x004D383150420200
 
 /* PA: Primary display, First selection screen
  * PB: Primary display, Second selection screen
@@ -66,6 +69,9 @@ enum mi_project_panel_id {
 	M80_PANEL_PA,
 	N16_PANEL_PA,
 	N16_PANEL_PB,
+	N16_PANEL_PC,
+	M81_PANEL_PA,
+	M81_PANEL_PB,
 	PANEL_ID_MAX
 };
 
@@ -112,6 +118,12 @@ static inline enum mi_project_panel_id mi_get_panel_id(u64 mi_panel_id)
 		return N16_PANEL_PA;
 	case N16_42_02_OB_PANEL_ID:
 		return N16_PANEL_PB;
+	case N16_41_02_OC_PANEL_ID:
+		return N16_PANEL_PC;
+	case M81_36_02_0A_PANEL_ID:
+		return M81_PANEL_PA;
+	case M81_42_02_0B_PANEL_ID:
+		return M81_PANEL_PB;
 	default:
 		return PANEL_ID_INVALID;
 	}
@@ -156,6 +168,12 @@ static inline const char *mi_get_panel_id_name(u64 mi_panel_id)
 		return "N16_PANEL_PA";
 	case N16_PANEL_PB:
 		return "N16_PANEL_PB";
+	case N16_PANEL_PC:
+		return "N16_PANEL_PC";
+	case M81_PANEL_PA:
+		return "M81_PANEL_PA";
+	case M81_PANEL_PB:
+		return "M81_PANEL_PB";
 	default:
 		return "unknown";
 	}
@@ -177,6 +195,9 @@ static inline bool is_use_nvt_dsc_config(u64 mi_panel_id)
 	case M16T_36_02_0B_PANEL_ID:
 	case M80_42_02_0A_PANEL_ID:
 	case N16_42_02_OB_PANEL_ID:
+	case N16_41_02_OC_PANEL_ID:
+	case M81_36_02_0A_PANEL_ID:
+	case M81_42_02_0B_PANEL_ID:
 		return true;
 	default:
 		return false;
@@ -197,6 +218,8 @@ static inline bool is_use_nt36532_dsc_config(u64 mi_panel_id)
 {
 	switch(mi_panel_id) {
 	case M80_42_02_0A_PANEL_ID:
+	case M81_36_02_0A_PANEL_ID:
+	case M81_42_02_0B_PANEL_ID:
 		return true;
 	default:
 		return false;
@@ -219,6 +242,8 @@ static inline bool is_use_nt37703_dsc_config(u64 mi_panel_id)
 	case M16T_36_02_0A_PANEL_ID:
 	case M16T_36_02_0B_PANEL_ID:
 	case M80_42_02_0A_PANEL_ID:
+	case M81_36_02_0A_PANEL_ID:
+	case M81_42_02_0B_PANEL_ID:
 		return true;
 	default:
 		return false;
@@ -229,6 +254,7 @@ static inline bool is_use_nt37706_dsc_config(u64 mi_panel_id)
 {
 	switch(mi_panel_id) {
 	case N16_42_02_OB_PANEL_ID:
+	case N16_41_02_OC_PANEL_ID:
 		return true;
 	default:
 		return false;
